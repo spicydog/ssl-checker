@@ -1,5 +1,7 @@
 # SSL Checker
 
-Check SSLs via a single PHP webpage.
+The project check SSL expiration via a single PHP file.
 
-This script loads domain list, loads SSL informaion of each domain, sorts by expiration time, and displays the output.
+The script loads the domain list, fetches SSL informaion of each domain, sorts by expiration time, and displays to the output.
+
+Check the demo here: [https://ssl-checker.herokuapp.com](https://ssl-checker.herokuapp.com).
