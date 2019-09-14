@@ -3,6 +3,9 @@
 $parameter = array_values($_GET);
 $parameter = implode(',', $parameter);
 
+// Default domains if not parameters
+$domains = ['apple.com','microsoft.com','google.com'];
+
 if($parameter) {
 	// Load domain list from GET if exist
 	$parameter = str_replace(' ', '', $parameter);
@@ -19,15 +22,9 @@ $domains = array_filter($domains, function($domain) {
 });
 
 $domains = array_unique($domains);
+
+// Get maximum of 5 domain per request
 $domains = array_slice($domains, 0, 5);
-
-print_r($domains);
-exit;
-
-if (count($domains) === 0) {
-	// Default domains if not parameters
-	$domains = ['apple.com','microsoft.com','google.com'];
-}
 
 // Get certificate info
 // This code is adopted from http://stackoverflow.com/a/29779341/967802
