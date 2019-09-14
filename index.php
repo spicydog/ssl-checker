@@ -1,8 +1,33 @@
 <?php
 
-// Load domain list from domains.txt
-$domains = explode("\n", file_get_contents('domains.txt'));
-$domains = array_filter($domains, function($domain) { return $domain !== ''; });
+$parameter = array_values($_GET);
+$parameter = implode(',', $parameter);
+
+if($parameter) {
+	// Load domain list from GET if exist
+	$parameter = str_replace(' ', '', $parameter);
+	$domains = explode(",", $parameter);
+}
+
+// Clean the input
+$domains = array_filter($domains, function($domain) {
+	return $domain !== '';
+});
+
+$domains = array_filter($domains, function($domain) {
+	return strpos($domain, '.') > 0;
+});
+
+$domains = array_unique($domains);
+$domains = array_slice($domains, 0, 5);
+
+print_r($domains);
+exit;
+
+if (count($domains) === 0) {
+	// Default domains if not parameters
+	$domains = ['apple.com','microsoft.com','google.com'];
+}
 
 // Get certificate info
 // This code is adopted from http://stackoverflow.com/a/29779341/967802
