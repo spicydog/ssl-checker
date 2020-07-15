@@ -2,6 +2,6 @@
   "name": "SSL Checker",
   "description": "A simple web application for SSL information",
   "repository": "https://github.com/spicydog/ssl-checker",
-  "logo": "https://www.php.net/images/logos/new-php-logo.png",
+  "logo": "https://host.spicydog.org/images/ssl.png",
   "keywords": ["php", "ssl", "checker"]
 }
