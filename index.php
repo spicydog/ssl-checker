@@ -60,6 +60,7 @@ foreach ($certs as $key => $row) {
 }
 array_multisort($validTo, SORT_ASC, $certs);
 
+
 // Generate output
 $bar = str_repeat('=', 80);
 $format = "$bar\n %s (%d days)\n$bar\n from: %s\n until: %s\n serial: %s\n issuer: %s\n$bar\n\n";
@@ -68,4 +69,16 @@ $output = '';
 foreach ($certs as $cert) {
 	$output .= sprintf($format, $cert['domain'], $cert['days'], $cert['validFrom'], $cert['validTo'], $cert['serialNumber'], $cert['issuer']);
 }
-printf("<pre>\n%s\n</pre>", $output);
+?>
+<html>
+<head>
+    <title>SSL Checker</title>
+</head>
+<body>
+    <form action="?" method="get">
+        <input type="text" name="domains" value="<?php echo implode(',',$domains); ?>" />
+        <input type="submit" value="Check" />
+    </form>
+    <?php printf("<pre>\n%s\n</pre>", $output); ?>
+</body>
+</html>
